@@ -7,7 +7,7 @@ Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgen
 
 void Simulation::step()
 {
-    // TODO: implement this method
+    // TODOoo: implement this method
 }
 
 bool Simulation::shouldTerminate() const
