@@ -7,7 +7,12 @@ Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgen
 
 void Simulation::step()
 {
-    // TODOoo: implement this method
+    // TODOoo: implement this method 
+    for(int i = 0; i < mGraph.getNumVertices(); i++)
+    {
+        Party party = mGraph.getParty(i);
+        party.step(*this);
+    }
 }
 
 bool Simulation::shouldTerminate() const
