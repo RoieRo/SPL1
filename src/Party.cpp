@@ -1,6 +1,6 @@
 #include "Party.h"
-
-Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting) 
+#include <vector>
+Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting), coolDown(0)
 {
     // You cannn change the implementation of the constructor, but not the signature!
 }
@@ -24,10 +24,23 @@ const string & Party::getName() const
 {
     return mName;
 }
-
-void Party::step(Simulation &s)
+///
+int Party::getId() const
+{
+    return mId;
+}  
+///
+void Party::step(Simulation &s)  
 {
     // TODO: implement this method
-    int u=9;
-    this->x=9;
+    
+    if(this->getState()==CollectingOffers)  {
+    
+        if(this->coolDown==3)   {
+          //this->mJoinPolicy->join(s, *this);
+
+        }  
+        this->coolDown++;
+    }
+    
 }

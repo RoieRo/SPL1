@@ -1,23 +1,46 @@
 #include "Simulation.h"
 
-Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents) 
+Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents)
 {
-    // You can change the implementation of the constructor, but not the signature!
 }
 
 void Simulation::step()
 {
-    // TODOoo: implement this method 
-    for(int i = 0; i < mGraph.getNumVertices(); i++)
+    // TODOoo: implement this method
+    for (int i = 0; i < mGraph.getNumVertices(); i++)
     {
-        Party party = mGraph.getParty(i);
-        party.step(*this);
+        
+        mGraph.getParty2(i).step(*this);
+    }
+
+    for (int i = 0; i < mAgents.size(); i++)
+    {
+        mAgents[i].step(*this);
     }
 }
 
 bool Simulation::shouldTerminate() const
 {
-    // TODO implement this method
+    const vector<vector<int>> coalitionParties = this->getPartiesByCoalitions();
+    for (int i = 0; i < coalitionParties.size(); i++)
+    {
+        int sumMandates = 0;
+        for (int j = 0; j < coalitionParties[i].size(); j++)
+        {
+            sumMandates = +mGraph.getMandates(coalitionParties[i][j]);
+        }
+        if (sumMandates >= 61)
+        {
+            return true;
+        }
+    }
+    for (int i = 0; i < mGraph.getNumVertices(); i++)
+    {
+        if (mGraph.getParty(i).getState() != Joined)
+        {
+            return false;
+        }
+    }
     return true;
 }
 

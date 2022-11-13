@@ -22,5 +22,10 @@ int Graph::getNumVertices() const
 
 const Party &Graph::getParty(int partyId) const
 {
-    return mVertices[partyId];
+    return  mVertices[partyId];
+}
+//
+ Party &Graph::getParty2(int partyId) 
+{
+    return  mVertices[partyId];
 }
