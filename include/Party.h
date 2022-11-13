@@ -21,8 +21,10 @@ public:
     State getState() const;
     void setState(State state);
     int getMandates() const;
-    void step(Simulation &s);
+    void step(Simulation &s) ;
     const string &getName() const;
+    //
+    int getId() const;
 
 private:
     int mId;
@@ -30,5 +32,5 @@ private:
     int mMandates;
     JoinPolicy *mJoinPolicy;
     State mState;
-    int x;
+    int coolDown;
 };
