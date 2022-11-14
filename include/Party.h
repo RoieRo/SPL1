@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include "JoinPolicy.h"
 using std::string;
 
 class JoinPolicy;

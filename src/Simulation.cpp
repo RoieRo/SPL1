@@ -2,7 +2,14 @@
 
 Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents)
 {
+    
+for(int k=0; k<agents.size() ; k++)
+{
+    coalitionVec[agents[k].getId()][0]=agents[k].getPartyId();
+
 }
+}
+
 
 void Simulation::step()
 {
@@ -53,7 +60,10 @@ const vector<Agent> &Simulation::getAgents() const
 {
     return mAgents;
 }
-
+ vector<Agent> &Simulation::getAgents2() 
+{
+    return mAgents;
+}
 const Party &Simulation::getParty(int partyId) const
 {
     return mGraph.getParty(partyId);
@@ -64,5 +74,9 @@ const Party &Simulation::getParty(int partyId) const
 const vector<vector<int>> Simulation::getPartiesByCoalitions() const
 {
     // TODO: you MUST implement this method for getting proper output, read the documentation above.
-    return vector<vector<int>>();
+    return coalitionVec;  
+}
+
+vector<vector<int>> Simulation::getCoalitionVec(){
+    return coalitionVec;
 }
