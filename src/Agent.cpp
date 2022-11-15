@@ -46,5 +46,5 @@ void Agent::step(Simulation &sim)
             }
         }
     }
-    this->mSelectionPolicy->select(sim,potentialParties,mPartyId,mAgentId);
+    // this->mSelectionPolicy->select(sim,potentialParties,mPartyId,mAgentId);
 }
