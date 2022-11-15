@@ -13,7 +13,7 @@ for(int k=0; k<agents.size() ; k++)
 
 void Simulation::step()
 {
-    // TODOoo: implement this method
+
     for (int i = 0; i < mGraph.getNumVertices(); i++)
     {
         

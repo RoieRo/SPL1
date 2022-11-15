@@ -1,11 +1,12 @@
 #include "../include/JoinPolicy.h"
 
+
 void MandatesJoinPolicy::join(Simulation &s, int partyId)
 {
     int maxSum = 0;
     int agentId = -1;
 
-    for (int i = 0; i < offers.size(); i++)
+    for (int i = 0; i < s.getParty(partyId).getOffers().size(); i++)
     {
         int currSum = 0;
         for (int j = 0; j < s.getCoalitionVec()[i].size(); j++)

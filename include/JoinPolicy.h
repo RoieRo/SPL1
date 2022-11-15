@@ -1,30 +1,25 @@
 #pragma once
 #include "Simulation.h"
-
 class JoinPolicy
 {
 public:
-    JoinPolicy(vector<int> moffers);
+    //JoinPolicy(vector <int> moffers);
     virtual void join(Simulation &s, int partyId) = 0;
-    vector<int> getOffers()  ;
-
-protected:
-    vector<int> offers;
+    //const vector <int> getOffers() const ;
 };
+
 class MandatesJoinPolicy : public JoinPolicy
 {
 public:
+    //Default constructor
+    // MandatesJoinPolicy()=0;
     virtual void join(Simulation &s, int partyId);
-
-private:
-    vector<int> offers;
 };
 
 class LastOfferJoinPolicy : public JoinPolicy
 {
 public:
+    //Default constructor
+   // LastOfferJoinPolicy();
     virtual void join(Simulation &s, int partyId);
-
-private:
-    vector<int> offers;
 };
