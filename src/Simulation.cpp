@@ -1,19 +1,24 @@
 #include "Simulation.h"
+#include <vector>
+#include <iostream>
+// using namespace std 
 
 Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents)
 {
-    
+vector<vector<int>> coalitionVec;
+coalitionVec.resize(agents.size());    
 for(int k=0; k<agents.size() ; k++)
 {
-    coalitionVec[agents[k].getId()][0]=agents[k].getPartyId();
-
+    vector<int> v;
+    v.push_back(agents[k].getPartyId());
+    std :: cout << "agent" + k;
+    coalitionVec[agents[k].getId()]=v;
 }
 }
-
 
 void Simulation::step()
 {
-
+    std :: cout << "started step";
     for (int i = 0; i < mGraph.getNumVertices(); i++)
     {
         

@@ -21,6 +21,7 @@ int main(int argc, char **argv)
     vector<json> outPerIter = {Parser::makeJson(simulation)};
     while (!simulation.shouldTerminate())
     {
+        std :: cout << "started step";
         simulation.step();
         outPerIter.push_back(Parser::makeJson(simulation));
     }
