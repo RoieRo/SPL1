@@ -1,5 +1,5 @@
 #include "../include/JoinPolicy.h"
-#include "../include/Simulation.h"
+//#include "../include/Simulation.h"
 
 void LastOfferJoinPolicy::join(Simulation &s, int partyId)
 {
