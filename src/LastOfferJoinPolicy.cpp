@@ -12,4 +12,5 @@ void LastOfferJoinPolicy::join(Simulation &s, int partyId)
     Agent dupAgent = s.getAgents2()[agentId];
 
     s.getAgents2().push_back(dupAgent);
+
 }

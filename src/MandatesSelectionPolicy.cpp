@@ -1,16 +1,19 @@
 #include "../include/SelectionPolicy.h"
 void MandatesSelectionPolicy ::select(Simulation &s, vector<int> potential, int partyID, int agentId)
 {
+    int maxMandats = -1;
     int maxParty = -1;
-    int maxEdge = 0;
-    int edge;
+    int current;
     for (int i = 0; i < potential.size(); i++)
     {
-        edge = s.getParty(potential[i]).getMandates();
-        if (edge > maxEdge)
+        current = s.getParty(potential[i]).getMandates();
+        if (current > maxMandats)
         {
-            maxEdge = edge;
+            maxMandats = current;
             maxParty = i;
         }
+    }
+    if(maxParty >-1){
+        s.getParty(maxParty).getOffers().push_back(agentId);
     }
 }

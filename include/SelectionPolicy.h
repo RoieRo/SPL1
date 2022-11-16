@@ -1,5 +1,6 @@
 #pragma once
 #include "Simulation.h"
+#include "Agent.h"
 
 class SelectionPolicy { 
     public:

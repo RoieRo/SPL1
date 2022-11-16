@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Party.h"
+#include "Agent.h"
 
 using std::vector;
 

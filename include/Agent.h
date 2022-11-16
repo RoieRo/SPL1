@@ -2,8 +2,8 @@
 
 #include <vector>
 #include "Graph.h"
+#include "SelectionPolicy.h"
 
-class SelectionPolicy;
 
 class Agent
 {

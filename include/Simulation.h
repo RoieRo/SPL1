@@ -4,7 +4,8 @@
 
 #include "Graph.h"
 #include "Agent.h"
-//#include "JoinPolicy.h"
+#include "JoinPolicy.h"
+
 using std::string;
 using std::vector;
 
