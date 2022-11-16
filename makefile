@@ -18,6 +18,9 @@ bin/Parser.o: src/Parser.cpp
 bin/Party.o: src/Party.cpp
 	g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/Party.o src/Party.cpp
 
+bin/Simulation.o: src/Simulation.cpp
+	g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/Simulation.o src/Simulation.cpp
+
 bin/JoinPolicy.o: src/JoinPolicy.cpp
 	g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/JoinPolicy.o src/JoinPolicy.cpp
 
@@ -35,9 +38,6 @@ bin/EdgeWeightSelectionPolicy.o: src/EdgeWeightSelectionPolicy.cpp
 
 bin/MandatesSelectionPolicy.o: src/MandatesSelectionPolicy.cpp
 	g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/MandatesSelectionPolicy.o src/MandatesSelectionPolicy.cpp
-
-bin/Simulation.o: src/Simulation.cpp
-	g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/Simulation.o src/Simulation.cpp
 
 clean:
 	rm -f bin/*

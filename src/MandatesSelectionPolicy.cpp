@@ -1,5 +1,7 @@
 #include "../include/SelectionPolicy.h"
-void MandatesSelectionPolicy ::select(Simulation &s, vector<int> potential, int partyID, int agentId)
+#include "../include/Simulation.h"//Shira added
+
+void MandatesSelectionPolicy ::select(Simulation &s, std::vector<int> potential, int partyID, int agentId)
 {
     int maxMandats = -1;
     int maxParty = -1;

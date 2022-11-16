@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
-#include <vector>
-//#include "JoinPolicy.h"
+#include <vector> //Shira added
+#include "JoinPolicy.h" //Shira added
+
 using std::string;
 using std::vector;
 
