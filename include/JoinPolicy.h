@@ -1,5 +1,6 @@
 #pragma once
-#include "Simulation.h"
+
+//#include "../include/Simulation.h" //Shira added
 class Simulation;
 
 class JoinPolicy

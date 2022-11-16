@@ -29,6 +29,25 @@
         "type_traits": "cpp",
         "tuple": "cpp",
         "typeinfo": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "cstdarg": "cpp",
+        "cstddef": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "atomic": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "algorithm": "cpp",
+        "functional": "cpp",
+        "iterator": "cpp",
+        "map": "cpp",
+        "memory": "cpp",
+        "memory_resource": "cpp",
+        "numeric": "cpp",
+        "string": "cpp",
+        "iomanip": "cpp",
+        "iostream": "cpp",
+        "cinttypes": "cpp",
+        "valarray": "cpp"
     }
 }

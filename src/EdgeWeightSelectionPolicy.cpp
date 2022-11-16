@@ -1,5 +1,6 @@
 #include "../include/SelectionPolicy.h"
-void EdgeWeightSelectionPolicy ::select(Simulation &s, vector<int> potential, int partyID, int agentId)
+#include "../include/Simulation.h"//Shira added
+void EdgeWeightSelectionPolicy::select(Simulation &s, std::vector<int> potential, int partyID, int agentId)
 {
     int maxParty = -1;
     int maxEdge = 0;
@@ -16,6 +17,5 @@ void EdgeWeightSelectionPolicy ::select(Simulation &s, vector<int> potential, in
     if(maxParty >-1){
         s.getParty(maxParty).getOffers().push_back(agentId);
     }
-    
     
 }

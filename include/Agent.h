@@ -2,8 +2,10 @@
 
 #include <vector>
 #include "Graph.h"
-#include "SelectionPolicy.h"
+#include "SelectionPolicy.h" //Shira added
 
+class SelectionPolicy;
+class Simulation;   //Shira added
 
 class Agent
 {

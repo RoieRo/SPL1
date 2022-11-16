@@ -1,12 +1,9 @@
 #include "Party.h"
-#include <vector>
-#include "JoinPolicy.h"
 
- using std :: vector;
 //constructor
 Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting), coolDown(0)
 {
-    vector<int> offers;
+    std::vector<int> offers;
     // You cannn change the implementation of the constructor, but not the signature!
 }
 
