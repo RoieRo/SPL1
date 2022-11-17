@@ -1,11 +1,63 @@
 #include "Agent.h"
 #include "Simulation.h"
 #include "iostream"
-Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) : mAgentId(agentId), mPartyId(partyId), mSelectionPolicy(selectionPolicy)
+Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) : mAgentId(agentId), mPartyId(partyId), mSelectionPolicy(selectionPolicy), mCoalition(0)
 {
     // You can change the implementation of the constructor, but not the signature!
 }
+// // Copy Constructor
+Agent::Agent(const Agent &other) :
+ mAgentId(other.mAgentId), mPartyId(mPartyId), 
+ mSelectionPolicy(other.mSelectionPolicy),
+ mCoalition(other.mCoalition)
+{
+}
+// destructor
+Agent::~Agent() {
+    
+}
+// Copy assignment operator
+Agent& Agent::operator=(const Agent& other)
+{
+    if(this != &other)
+    {
+        
+    }
 
+}
+// //  Move constructor
+Agent::Agent(Agent&& other) :
+mAgentId(other.mAgentId), mPartyId(mPartyId),
+mSelectionPolicy(other.mSelectionPolicy),
+mCoalition(other.mCoalition)
+
+{}
+
+// // move assignment operator
+Agent& Agent:: operator=(Agent&& other) {
+    if (this!= &other)
+    {
+        delete this;
+        mAgentId=other.mAgentId;
+        mPartyId=other.mPartyId;
+        mSelectionPolicy=other.mSelectionPolicy;
+        mCoalition=other.mCoalition;
+         //other.mAgentId= ;
+         //other.mPartyId=nullptr;
+        other.mSelectionPolicy=nullptr;
+    }
+    
+ }
+/// get coalition I made today
+int Agent::getCoalition() const
+{
+    return mCoalition;
+}
+/// I made today
+void Agent::setCoalition(int coalition)
+{
+    mCoalition = coalition;
+}
 int Agent::getId() const
 {
     return mAgentId;
@@ -48,5 +100,6 @@ void Agent::step(Simulation &sim)
             }
         }
     }
-    this->mSelectionPolicy->select(sim,potentialParties,mPartyId,mAgentId);
+    mCoalition = this->getCoalition();
+    this->mSelectionPolicy->select(sim,potentialParties,mPartyId,mAgentId,mCoalition);
 }
