@@ -21,8 +21,9 @@ bin/Party.o: src/Party.cpp
 bin/Simulation.o: src/Simulation.cpp
 	g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/Simulation.o src/Simulation.cpp
 
+
 bin/JoinPolicy.o: src/JoinPolicy.cpp
-	g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/JoinPolicy.o src/JoinPolicy.cpp
+	 g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/JoinPolicy.o src/JoinPolicy.cpp
 
 bin/LastOfferJoinPolicy.o: src/LastOfferJoinPolicy.cpp
 	g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/LastOfferJoinPolicy.o src/LastOfferJoinPolicy.cpp	
@@ -30,8 +31,8 @@ bin/LastOfferJoinPolicy.o: src/LastOfferJoinPolicy.cpp
 bin/MandatesJoinPolicy.o: src/MandatesJoinPolicy.cpp
 	g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/MandatesJoinPolicy.o src/MandatesJoinPolicy.cpp
 
-bin/SelectionPolicy.o: src/SelectionPolicy.cpp
-	g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/SelectionPolicy.o src/SelectionPolicy.cpp
+ bin/SelectionPolicy.o: src/SelectionPolicy.cpp
+	 g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/SelectionPolicy.o src/SelectionPolicy.cpp
 
 bin/EdgeWeightSelectionPolicy.o: src/EdgeWeightSelectionPolicy.cpp
 	g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/EdgeWeightSelectionPolicy.o src/EdgeWeightSelectionPolicy.cpp

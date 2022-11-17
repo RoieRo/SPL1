@@ -1,5 +1,7 @@
 #include "Party.h"
 
+#include <iostream>>
+
 //constructor
 Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting), coolDown(0)
 {
@@ -36,13 +38,15 @@ const string &Party::getName() const
   //  return *mJoinPolicy;
 //}
 
-
 void Party::step(Simulation &s)
 {
     // TODO: implement this method
 
     if (this->getState() == CollectingOffers)
     {
+        this->coolDown++;
+        std :: cout << "  the state is  ";
+        std :: cout << this->getState() ;
 
         if (this->coolDown == 3)
         {
@@ -50,6 +54,8 @@ void Party::step(Simulation &s)
 
             mState = Joined;
         }
-        this->coolDown++;
+        std :: cout << "  the cooldown is  ";
+        std :: cout << coolDown;
     }
 }
+ 
