@@ -1,13 +1,12 @@
 #include "../include/SelectionPolicy.h"
 #include "../include/Simulation.h" //Shira added
-void EdgeWeightSelectionPolicy::select(Simulation &s, std::vector<int> potential, int partyID, int agentId)
+void EdgeWeightSelectionPolicy::select(Simulation &s, std::vector<int> potential, int partyID, int agentId,int mCoalition)
 {
     int maxParty = -1;
     int maxEdge = 0;
     int edge;
     for (int i = 0; i < potential.size(); i++)
     {
-        std ::cout << " LOOpppppp 1!! ";
         edge = s.getGraph().getEdgeWeight(potential[i], partyID);
         if (edge > maxEdge)
         {
@@ -15,9 +14,11 @@ void EdgeWeightSelectionPolicy::select(Simulation &s, std::vector<int> potential
             maxParty = potential[i];
         }
     }
+
     if (maxParty > -1)
     {
-        s.getParty(maxParty).getOffers().push_back(agentId);
+        s.getParty(maxParty).getOffers().push_back(mCoalition);
+        // all this is only for test
         std ::cout << " here its ok ";
         std ::cout << " here its ok ";
         std ::cout << " num mandats of party that chosed ";
@@ -31,7 +32,13 @@ void EdgeWeightSelectionPolicy::select(Simulation &s, std::vector<int> potential
             std ::cout << " LOOpppppp ";
             std ::cout << element;
         }
-        
+         std ::cout << " the party state at first is : " ; 
+         std ::cout <<s.getParty3(maxParty).getState() ;
+         //this is not a part from the test
          s.getParty3(maxParty).setState(CollectingOffers);
+         // here test continue
+         std ::cout << " the party state sec  is : " ; 
+         std ::cout <<s.getParty3(maxParty).getState() ;
+         std ::cout << "  " ; 
     }
 }

@@ -10,11 +10,14 @@ for(int k=0; k<agents.size() ; k++)
 {
     vector<int> v;
     v.push_back(agents[k].getPartyId());
+    // only for test
     std :: cout << " agent "  ;
     std :: cout << k  ;
     std :: cout << " party id =  "  ;
     std :: cout <<  agents[k].getPartyId() ;
-    coalitionVec[agents[k].getId()]=v;   
+    // I changed agents[k].getId() to agents[k].getCoalition()
+    coalitionVec[agents[k].getCoalition()]=v; 
+    agents[k].setCoalition(k);
 }
 
 
@@ -36,9 +39,11 @@ void Simulation::step()
     for (int i = 0; i < mAgents.size(); i++)
     {
         mAgents[i].step(*this);
+        //
         std :: cout << " the agent id is : " ;
         std :: cout <<  mAgents[i].getId() ;
         std :: cout << " next agent " ;
+        //
     }
 }
 
@@ -88,6 +93,7 @@ const Party &Simulation::getParty(int partyId) const
 {
     return mGraph.getParty2(partyId);
 }
+
 //
 
 //

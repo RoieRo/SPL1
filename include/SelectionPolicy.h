@@ -6,14 +6,15 @@ class Simulation;//Shira added
 
 class SelectionPolicy { 
     public:
-    virtual void select(Simulation &s,std::vector<int> potential,int partyID, int agentId) = 0;
+    // here i add int nCoalition
+    virtual void select(Simulation &s,std::vector<int> potential,int partyID, int agentId, int mCoalition) = 0;
 };
 class MandatesSelectionPolicy: public SelectionPolicy{
     public:
-    virtual void select(Simulation &s,std::vector<int> potential,int partyID, int agentId)override;
+     void select(Simulation &s,std::vector<int> potential,int partyID, int agentId, int mCoalition) override;
  };
 
 class EdgeWeightSelectionPolicy: public SelectionPolicy{ 
     public:
-    virtual void select(Simulation &s,std::vector<int> potential,int partyID, int agentId) override;
+     void select(Simulation &s,std::vector<int> potential,int partyID, int agentId,int mCoalition) override;
 };
