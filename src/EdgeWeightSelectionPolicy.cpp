@@ -5,7 +5,8 @@ void EdgeWeightSelectionPolicy::select(Simulation &s, std::vector<int> potential
     int maxParty = -1;
     int maxEdge = 0;
     int edge;
-    for (int i = 0; i < potential.size(); i++)
+
+    for (unsigned int i = 0; i < potential.size(); i++)
     {
         edge = s.getGraph().getEdgeWeight(potential[i], partyID);
         if (edge > maxEdge)
@@ -27,6 +28,7 @@ void EdgeWeightSelectionPolicy::select(Simulation &s, std::vector<int> potential
         std ::cout << agentId;
         std ::cout << " next itertion ";
         std ::cout << "    ";
+        
         for (auto element : s.getParty(maxParty).getOffers())
         {
             std ::cout << " LOOpppppp ";

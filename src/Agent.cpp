@@ -9,10 +9,9 @@ Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) : mAgen
 // Copy Constructor 
 // Be aware that you need to change it's mAgentId field according to agents vector!
 // AKA mPartyId field.
-Agent::Agent(const Agent &other) : mAgentId(other.mAgentId), mPartyId(mPartyId),
-                                   mCoalition(other.mCoalition)
+Agent::Agent(const Agent &other) : mAgentId(other.mAgentId), mPartyId(other.mPartyId),
+                                   mSelectionPolicy(other.mSelectionPolicy->cloneAgent()),mCoalition(other.mCoalition)
 {
-    mSelectionPolicy = other.mSelectionPolicy->cloneAgent();  
 }   
 
 Agent::~Agent() // Destructor
@@ -31,14 +30,14 @@ Agent& Agent::operator=(const Agent &other)
             delete mSelectionPolicy;
         mAgentId = other.mAgentId;  
         mPartyId = other.mPartyId;
-        mCoalition = other.mCoalition;
         mSelectionPolicy = other.mSelectionPolicy->cloneAgent();
+        mCoalition = other.mCoalition;
     }
     return *this;
 }
 
 // //  Move constructor
-Agent::Agent(Agent &&other) : mAgentId(other.mAgentId), mPartyId(mPartyId),
+Agent::Agent(Agent &&other) : mAgentId(other.mAgentId), mPartyId(other.mPartyId),
                               mSelectionPolicy(other.mSelectionPolicy),
                               mCoalition(other.mCoalition)
 {
@@ -60,6 +59,7 @@ Agent& Agent::operator=(Agent&& other)
         mCoalition = other.mCoalition;
         other.mSelectionPolicy = nullptr;
     }
+    return *this;
 }
 /// get coalition I made today
 int Agent::getCoalition() const
@@ -95,26 +95,30 @@ void Agent::step(Simulation &sim)
 {
 
     vector<int> potentialParties;
-    int num = sim.getGraph().getNumVertices() - 1;
+    
     bool isOk = true;
 
-    for (int i = 0; i < num; i++) // iterating over all the parties
+    for (int i = 0; i < (sim.getGraph().getNumVertices() - 1); i++) // iterating over all the parties
     {
         std ::cout << " loop step 1 ";
         // checks if a party is a neighboor and its state
-        if (mPartyId != i && isOk && sim.getGraph().getEdgeWeight(mPartyId, i) > 0 && sim.getGraph().getParty(i).getState() != Joined)
+        
+        if (mPartyId != i && isOk && sim.getGraph().getEdgeWeight(mPartyId, i)>0 && sim.getGraph().getParty(i).getState() != Joined)
         {
             std ::cout << " loop step 2 ";
             // checks if our coalition allready offered party i to join.
-            for (int j = 0; j < sim.getParty(i).getOffers().size(); j++)
+            
+            
+            for (unsigned int j = 0; j < sim.getParty(i).getOffers().size(); j++)
             {
                 std ::cout << " loop step 3 ";
                 if (mAgentId == sim.getParty(i).getOffers()[j])
                     isOk = false;
                 std ::cout << " loop step 4 ";
             }
+            
             // isOk=true;
-            // insert third condition.
+            // Checks if we already got offers from a coalition
             // then insert i into potentialpARTIES.
             if (isOk)
             {

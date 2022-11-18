@@ -2,26 +2,24 @@
 
 using namespace std ;
 
-Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents)
-{
-vector<vector<int>> coalitionVec;
-coalitionVec.resize(agents.size());    
-for(int k=0; k<agents.size() ; k++)
-{
-    vector<int> v;
-    v.push_back(agents[k].getPartyId());
-    // only for test
-    std :: cout << " agent "  ;
-    std :: cout << k  ;
-    std :: cout << " party id =  "  ;
-    std :: cout <<  agents[k].getPartyId() ;
-    // I changed agents[k].getId() to agents[k].getCoalition()
-    coalitionVec[agents[k].getCoalition()]=v; 
-    agents[k].setCoalition(k);
-}
-
-
-}
+ Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents), coalitionVec()
+ {
+     //vector<vector<int>> coalitionVec;
+     coalitionVec.resize(agents.size());
+     for (unsigned int k = 0; k < agents.size(); k++)
+     {
+         vector<int> v;
+         v.push_back(agents[k].getPartyId());
+         // only for test
+         std ::cout << " agent ";
+         std ::cout << k;
+         std ::cout << " party id =  ";
+         std ::cout << agents[k].getPartyId();
+         // I changed agents[k].getId() to agents[k].getCoalition()
+         coalitionVec[agents[k].getCoalition()] = v;
+         agents[k].setCoalition(k);
+     }
+ }
 
 void Simulation::step()
 {
@@ -35,8 +33,8 @@ void Simulation::step()
         mGraph.getParty2(i).step(*this);
 
     }
-    
-    for (int i = 0; i < mAgents.size(); i++)
+   
+    for (unsigned int i = 0; i < mAgents.size(); i++)
     {
         mAgents[i].step(*this);
         //
@@ -50,19 +48,22 @@ void Simulation::step()
 bool Simulation::shouldTerminate() const
 {
     const vector<vector<int>> coalitionParties = this->getPartiesByCoalitions();
-    for (int i = 0; i < coalitionParties.size(); i++)
+    
+    for (unsigned int i = 0; i < coalitionParties.size(); i++)
     {
         int sumMandates = 0;
-        for (int j = 0; j < coalitionParties[i].size(); j++)
+        
+        for (unsigned int j = 0; j < coalitionParties[i].size(); j++)
         {
-            sumMandates = +mGraph.getMandates(coalitionParties[i][j]);
+            sumMandates =+ mGraph.getMandates(coalitionParties[i][j]);
         }
         if (sumMandates >= 61)
         {
             return true;
         }
     }
-    for (int i = 0; i < mGraph.getNumVertices(); i++)
+
+    for (int i = 0; i < mGraph.getNumVertices() ; i++)
     {
         if (mGraph.getParty(i).getState() != Joined)
         {

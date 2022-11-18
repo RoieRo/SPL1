@@ -7,10 +7,10 @@ void MandatesJoinPolicy::join(Simulation &s, int partyId)
     int maxSum = 0;
     int agentId = -1;
 
-    for (int i = 0; i < s.getParty(partyId).getOffers().size(); i++)
+    for (unsigned int i = 0; i < s.getParty(partyId).getOffers().size(); i++)
     {
         int currSum = 0;
-        for (int j = 0; j < s.getCoalitionVec()[i].size(); j++)
+        for (unsigned int j = 0; j < s.getCoalitionVec()[i].size(); j++)
         {
             currSum = currSum + s.getParty(s.getCoalitionVec()[i][j]).getMandates();
         }
