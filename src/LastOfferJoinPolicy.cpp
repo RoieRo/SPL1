@@ -1,5 +1,6 @@
 #include "../include/JoinPolicy.h"//Shira added
 #include "../include/Simulation.h"//Shira added
+#include "../include/SelectionPolicy.h"//Shira added
 #include <iostream>
 void LastOfferJoinPolicy::join(Simulation &s, int partyId)
 {
@@ -14,9 +15,17 @@ void LastOfferJoinPolicy::join(Simulation &s, int partyId)
     std :: cout << partyId;
     std :: cout << " joined to " ;   
     std :: cout << s.getCoalitionVec()[CoalId][0];
-    //
+    //Creating a new Agent clone
     Agent dupAgent = s.getAgents2()[agentId];
-    
+    dupAgent.setPartyId(partyId);
+    dupAgent.setAgentId(s.getAgents().size());
     s.getAgents2().push_back(dupAgent);
 
+}
+
+//Will be used in Party's Copy Constructor
+JoinPolicy* LastOfferJoinPolicy::cloneParty()
+{
+    JoinPolicy* dup = new LastOfferJoinPolicy();
+    return dup;
 }
