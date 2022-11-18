@@ -111,10 +111,8 @@ void Agent::step(Simulation &sim)
             
             for (unsigned int j = 0; j < sim.getParty3(i).getOffers().size(); j++)
             {
-                std ::cout << " loop step 3 ";
                 if (mCoalition == sim.getParty3(i).getOffers()[j])
                     isOk = false;
-                std ::cout << " loop step 4 ";
             }
             
             // isOk=true;
@@ -123,7 +121,6 @@ void Agent::step(Simulation &sim)
             if (isOk)
             {
                 potentialParties.push_back(i);
-                std ::cout << " loop step 5 ";
             }
         }
     }

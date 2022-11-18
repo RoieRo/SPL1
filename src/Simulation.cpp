@@ -10,25 +10,18 @@ using namespace std ;
      {
          vector<int> v;
          v.push_back(agents[k].getPartyId());
-         // only for test
-         std ::cout << " agent ";
-         std ::cout << k;
-         std ::cout << " party id =  ";
-         std ::cout << agents[k].getPartyId();
-         // I changed agents[k].getId() to agents[k].getCoalition()
-         coalitionVec[agents[k].getCoalition()] = v;
          agents[k].setCoalition(k);
+         coalitionVec[agents[k].getCoalition()] = v;
+       
      }
  }
 
 void Simulation::step()
 {
-    // std :: cout << "started step";
+    
     for (int i = 0; i < mGraph.getNumVertices(); i++)
     {
-        std :: cout << "   ";
-        std :: cout <<  mGraph.getParty2(i).getName() ;
-        std :: cout << "   ";
+
 
         mGraph.getParty2(i).step(*this);
 
@@ -37,13 +30,6 @@ void Simulation::step()
     for (unsigned int i = 0; i < mAgents.size(); i++)
     {
         mAgents[i].step(*this);
-        //
-        std :: cout << " the agent id is : " ;
-        std :: cout <<  mAgents[i].getId() ;
-        std :: cout <<  "the agent coallition is : ";
-        std :: cout <<  mAgents[i].getCoalition();
-        std :: cout << " next agent " ;
-        //
     }
 }
 
@@ -57,7 +43,7 @@ bool Simulation::shouldTerminate() const
         
         for (unsigned int j = 0; j < coalitionParties[i].size(); j++)
         {
-            sumMandates =+ mGraph.getMandates(coalitionParties[i][j]);
+            sumMandates += mGraph.getMandates(coalitionParties[i][j]);
         }
         if (sumMandates >= 61)
         {

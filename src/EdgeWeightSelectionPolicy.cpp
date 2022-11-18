@@ -21,27 +21,8 @@ void EdgeWeightSelectionPolicy::select(Simulation &s, std::vector<int> potential
     if (maxParty > -1)
     {
         s.getParty3(maxParty).getOffers().push_back(mCoalition);
-        
-        // all this is only for test
-        // std ::cout << " num mandats of party that chosed ";
-        // std ::cout << s.getParty(maxParty).getMandates();
-        // std ::cout << " insert to offer vector ";
-        // std ::cout << agentId;
-        // std ::cout << "    ";
-        
-        for (auto element : s.getParty3(maxParty).getOffers())
-        {
-            std ::cout << " LOOpppppp ";
-            std ::cout << element;
-        }
-         std ::cout << " the party state at first is : " ; 
-         std ::cout <<s.getParty3(maxParty).getState() ;
          //this is not a part from the test
          s.getParty3(maxParty).setState(CollectingOffers);
-         // here test continue
-         std ::cout << " the party state sec  is : " ; 
-         std ::cout <<s.getParty3(maxParty).getState() ;
-         std ::cout << "  " ; 
     }
 }
 
