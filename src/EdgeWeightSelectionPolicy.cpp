@@ -42,3 +42,9 @@ void EdgeWeightSelectionPolicy::select(Simulation &s, std::vector<int> potential
          std ::cout << "  " ; 
     }
 }
+
+//Will be used in Agent's Copy Constructor
+SelectionPolicy* EdgeWeightSelectionPolicy::cloneAgent(){
+    SelectionPolicy* dup = new EdgeWeightSelectionPolicy();
+    return dup;
+}

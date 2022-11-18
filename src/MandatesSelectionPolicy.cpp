@@ -7,6 +7,7 @@ void MandatesSelectionPolicy ::select(Simulation &s, std::vector<int> potential,
     int maxMandats = -1;
     int maxParty = -1;
     int current;
+    //ASK ROIE <
     for (int i = 0; i <= potential.size(); i++)
     {
         current = s.getParty(potential[i]).getMandates();
@@ -34,4 +35,11 @@ void MandatesSelectionPolicy ::select(Simulation &s, std::vector<int> potential,
          s.getParty3(maxParty).setState(CollectingOffers) ;
         
     }
+}
+
+//Will be used in Agent's Copy Constructor
+SelectionPolicy* MandatesSelectionPolicy:: cloneAgent(){
+    SelectionPolicy* dup = new MandatesSelectionPolicy();
+    return dup;
+
 }

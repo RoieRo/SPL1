@@ -20,6 +20,12 @@ class Party
 {
 public:
     Party(int id, string name, int mandates, JoinPolicy *);
+    // Rule of five
+    Party (const Party& other); //Copy Constructor
+    Party& operator=(const Party& other);   //Copy Assigment Operator
+    virtual ~Party(); //Destructor
+    Party(Party&& other);   //Move 
+    Party& operator=(Party&& other);    //Move Assigment Operator
 
     State getState() const;
     void setState(State state);
