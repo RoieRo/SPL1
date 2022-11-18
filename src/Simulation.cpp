@@ -1,6 +1,6 @@
 #include "Simulation.h"
 
- using namespace std ;
+using namespace std ;
 
 Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents)
 {
