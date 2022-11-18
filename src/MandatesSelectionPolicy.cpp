@@ -7,8 +7,7 @@ void MandatesSelectionPolicy ::select(Simulation &s, std::vector<int> potential,
     int maxMandats = -1;
     int maxParty = -1;
     int current;
-    //ASK ROIE <
-    for (int i = 0; i <= potential.size(); i++)
+    for (unsigned int i = 0; i < potential.size(); i++)
     {
         current = s.getParty(potential[i]).getMandates();
         if (current > maxMandats)
@@ -24,7 +23,8 @@ void MandatesSelectionPolicy ::select(Simulation &s, std::vector<int> potential,
         std :: cout << " num of party that chosed " ;
         std :: cout <<  s.getParty(maxParty).getMandates() ;
         std :: cout << "    " ;
-        for (auto element : s.getParty(maxParty).getOffers())
+        vector<int> vecOffers = s.getParty(maxParty).getOffers();
+        for (auto element : vecOffers)
          {
             
             std :: cout << " LOOpppppp " ;

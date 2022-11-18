@@ -1,19 +1,20 @@
 #include "Party.h"
 
-#include <iostream>>
+#include <iostream>
 
 // Constructor
 Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName(name),
-                                                                  mMandates(mandates), mJoinPolicy(jp), mState(Waiting), coolDown(0)
+                                                                  mMandates(mandates), mJoinPolicy(jp), mState(Waiting), coolDown(0),offers()
 {
-    // std::vector<int> offers;
+    
 }
 
 // offers(std::vector <int> (other.offers))
 //  Copy Constructor
-Party::Party(const Party &other) : mId(other.mId), mName(other.mName), offers(other.offers), mMandates(other.mMandates), mState(other.mState), coolDown(other.coolDown)
+Party::Party(const Party &other) : mId(other.mId), mName(other.mName), 
+mMandates(other.mMandates),mJoinPolicy(other.mJoinPolicy->cloneParty()), mState(other.mState), coolDown(other.coolDown),
+offers(other.offers)
 {
-    mJoinPolicy = other.mJoinPolicy->cloneParty();
 }
 
 // Copy Assigment Operator
@@ -25,13 +26,13 @@ Party &Party::operator=(const Party &other)
         {
             delete mJoinPolicy;
         }
-        mJoinPolicy = other.mJoinPolicy->cloneParty();
         mId = other.mId;
         mName = other.mName;
-        offers = other.offers; // vector has its own assigment operator
         mMandates = other.mMandates;
+        mJoinPolicy = other.mJoinPolicy->cloneParty();// vector has its own assigment operator
         mState = other.mState;
         coolDown = other.coolDown;
+        offers = other.offers;
     }
     return *this;
 }
@@ -46,7 +47,9 @@ Party::~Party()
 }
 
 // Move
-Party::Party(Party &&other) : mId(other.mId), mName(other.mName), offers(other.offers), mMandates(other.mMandates), mState(other.mState), mJoinPolicy(other.mJoinPolicy), coolDown(other.coolDown)
+Party::Party(Party &&other) : mId(other.mId), mName(other.mName), 
+mMandates(other.mMandates), mJoinPolicy(other.mJoinPolicy), mState(other.mState), 
+coolDown(other.coolDown),offers(other.offers)
 {
     other.mJoinPolicy = nullptr;
 }
@@ -60,14 +63,15 @@ Party &Party ::operator=(Party &&other)
         {
             delete mJoinPolicy;
         }
-        mJoinPolicy = other.mJoinPolicy;
         mId = other.mId;
         mName = other.mName;
-        offers = std::move(other.offers); // FISHI
         mMandates = other.mMandates;
+        mJoinPolicy = other.mJoinPolicy;
         mState = other.mState;
         coolDown = other.coolDown;
+        offers = std::move(other.offers); // FISHI
     }
+    return *this;
 }
 
 //Getters & Setters
