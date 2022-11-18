@@ -1,5 +1,5 @@
 #include "Simulation.h"
-
+#include <iostream>
 using namespace std ;
 
  Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents), coalitionVec()
@@ -33,13 +33,15 @@ void Simulation::step()
         mGraph.getParty2(i).step(*this);
 
     }
-   
+    
     for (unsigned int i = 0; i < mAgents.size(); i++)
     {
         mAgents[i].step(*this);
         //
         std :: cout << " the agent id is : " ;
         std :: cout <<  mAgents[i].getId() ;
+        std :: cout <<  "the agent coallition is : ";
+        std :: cout <<  mAgents[i].getCoalition();
         std :: cout << " next agent " ;
         //
     }

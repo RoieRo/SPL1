@@ -1,11 +1,13 @@
 #include "../include/SelectionPolicy.h"
 #include "../include/Simulation.h" //Shira added
+#include <vector>
+
 void EdgeWeightSelectionPolicy::select(Simulation &s, std::vector<int> potential, int partyID, int agentId,int mCoalition)
 {
     int maxParty = -1;
     int maxEdge = 0;
     int edge;
-
+    
     for (unsigned int i = 0; i < potential.size(); i++)
     {
         edge = s.getGraph().getEdgeWeight(potential[i], partyID);
@@ -18,18 +20,16 @@ void EdgeWeightSelectionPolicy::select(Simulation &s, std::vector<int> potential
 
     if (maxParty > -1)
     {
-        s.getParty(maxParty).getOffers().push_back(mCoalition);
-        // all this is only for test
-        std ::cout << " here its ok ";
-        std ::cout << " here its ok ";
-        std ::cout << " num mandats of party that chosed ";
-        std ::cout << s.getParty(maxParty).getMandates();
-        std ::cout << " insert to offer vector ";
-        std ::cout << agentId;
-        std ::cout << " next itertion ";
-        std ::cout << "    ";
+        s.getParty3(maxParty).getOffers().push_back(mCoalition);
         
-        for (auto element : s.getParty(maxParty).getOffers())
+        // all this is only for test
+        // std ::cout << " num mandats of party that chosed ";
+        // std ::cout << s.getParty(maxParty).getMandates();
+        // std ::cout << " insert to offer vector ";
+        // std ::cout << agentId;
+        // std ::cout << "    ";
+        
+        for (auto element : s.getParty3(maxParty).getOffers())
         {
             std ::cout << " LOOpppppp ";
             std ::cout << element;

@@ -100,19 +100,19 @@ void Agent::step(Simulation &sim)
 
     for (int i = 0; i < (sim.getGraph().getNumVertices() - 1); i++) // iterating over all the parties
     {
-        std ::cout << " loop step 1 ";
+        // std ::cout << " loop step 1 ";
         // checks if a party is a neighboor and its state
         
         if (mPartyId != i && isOk && sim.getGraph().getEdgeWeight(mPartyId, i)>0 && sim.getGraph().getParty(i).getState() != Joined)
         {
-            std ::cout << " loop step 2 ";
+           // std ::cout << " loop step 2 ";
             // checks if our coalition allready offered party i to join.
             
             
-            for (unsigned int j = 0; j < sim.getParty(i).getOffers().size(); j++)
+            for (unsigned int j = 0; j < sim.getParty3(i).getOffers().size(); j++)
             {
                 std ::cout << " loop step 3 ";
-                if (mAgentId == sim.getParty(i).getOffers()[j])
+                if (mCoalition == sim.getParty3(i).getOffers()[j])
                     isOk = false;
                 std ::cout << " loop step 4 ";
             }

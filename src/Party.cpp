@@ -89,7 +89,7 @@ int Party::getMandates() const
 {
     return mMandates;
 }
-vector<int> Party::getOffers() const
+vector<int> &Party::getOffers() 
 {
     return offers;
 }
@@ -107,12 +107,13 @@ void Party::step(Simulation &s)
 {
     if (this->getState() == CollectingOffers)
     {
-        this->coolDown++;
+        coolDown++;
         std :: cout << "  the state is  ";
         std :: cout << this->getState() ;
 
-        if (this->coolDown == 3)
+        if (coolDown == 3)
         {
+            std :: cout << "  the cooldown is 3 ";
             this->mJoinPolicy->join(s, mId);
 
             mState = Joined;
