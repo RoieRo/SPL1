@@ -32,7 +32,7 @@ void MandatesSelectionPolicy ::select(Simulation &s, std::vector<int> potential,
          }
         // finish test
         // to update the state of party
-         s.getParty3(maxParty).setState(CollectingOffers) ;
+        s.getParty3(maxParty).setState(CollectingOffers) ;
         
     }
 }
