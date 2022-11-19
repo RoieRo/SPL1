@@ -1,7 +1,8 @@
 #include "Agent.h"
 #include "Simulation.h"
 #include <iostream>
-Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) : mAgentId(agentId), mPartyId(partyId), mSelectionPolicy(selectionPolicy), mCoalition(-1)
+Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) : mAgentId(agentId),
+ mPartyId(partyId), mSelectionPolicy(selectionPolicy), mCoalition(-1)
 {
     // You can change the implementation of the constructor, but not the signature!
 }
@@ -10,7 +11,8 @@ Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) : mAgen
 // Be aware that you need to change it's mAgentId field according to agents vector!
 // AKA mPartyId field.
 Agent::Agent(const Agent &other) : mAgentId(other.mAgentId), mPartyId(other.mPartyId),
-                                   mSelectionPolicy(other.mSelectionPolicy->cloneAgent()),mCoalition(other.mCoalition)
+                                   mSelectionPolicy(other.mSelectionPolicy->cloneAgent()),
+                                   mCoalition(other.mCoalition)
 {
     std::cout <<"Agent Copy Constructor"<< std::endl;
 }   

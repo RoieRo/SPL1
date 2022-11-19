@@ -23,6 +23,7 @@ int main(int argc, char **argv)
     while (!simulation.shouldTerminate() )
     {
         k++;
+        std :: cout << "         -------        "<< std::endl;
         std :: cout << "started step"<< k << std::endl;
         simulation.step();
         outPerIter.push_back(Parser::makeJson(simulation));

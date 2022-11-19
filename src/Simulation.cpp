@@ -10,7 +10,6 @@ using namespace std ;
      {
          coalitionVec[k].push_back(mAgents[k].getPartyId());
          mAgents[k].setCoalition(k);
-         
      }
      
  }
@@ -39,14 +38,15 @@ bool Simulation::shouldTerminate() const
     for (unsigned int i = 0; i < coalitionParties.size(); i++)
     {
         int sumMandates = 0;
-        
+        std::cout <<"Suming coalition number "<< i << std::endl;
         for (unsigned int j = 0; j < coalitionParties[i].size(); j++)
         {
+            std::cout <<"party number "<< coalitionParties[i][j] << std::endl;
             sumMandates = sumMandates + mGraph.getMandates(coalitionParties[i][j]);
         }
         if (sumMandates >= 61)
         {
-            std::cout <<"Terminated because we have coalition with 61"<< std::endl;
+            std::cout <<"Terminated because we have coalition with "<< sumMandates << " mandates"<< std::endl;
             return true;
         }
     }
