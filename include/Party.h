@@ -35,7 +35,7 @@ public:
     vector<int> &getOffers() ;
     //
     int getId() const;
-    // const JoinPolicy getJoin() const;
+    
 private:
     int mId;
     string mName;

@@ -3,8 +3,8 @@
 #include <iostream>
 
 // Constructor
-Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName(name),
-                                                                  mMandates(mandates), mJoinPolicy(jp), mState(Waiting), coolDown(0),offers()
+Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp),
+                                                                  mState(State::Waiting), coolDown(0), offers()
 {
     
 }
@@ -69,7 +69,8 @@ Party &Party ::operator=(Party &&other)
         mJoinPolicy = other.mJoinPolicy;
         mState = other.mState;
         coolDown = other.coolDown;
-        offers = std::move(other.offers); // FISHI
+        //offers = std::move(other.offers); // FISHI
+        offers = other.offers;
     }
     return *this;
 }
@@ -105,21 +106,20 @@ const string &Party::getName() const
 
 void Party::step(Simulation &s)
 {
-    if (this->getState() == CollectingOffers)
+    std::cout <<"Just Entered Party step with partyid"<< mId << std::endl;
+    if (mState == State::CollectingOffers)
     {
-        coolDown++;
-        std :: cout << "  the state is  ";
-        std :: cout << this->getState() ;
-
+        coolDown = coolDown + 1;
+        std::cout <<"Party "<< mId <<"is in collectin offers and its cooldown is "<< coolDown << std::endl;
+        
         if (coolDown == 3)
         {
-            std :: cout << "  the cooldown is 3 ";
-            this->mJoinPolicy->join(s, mId);
+            mJoinPolicy->join(s, mId);
 
-            mState = Joined;
+            mState = State::Joined;
         }
-        std :: cout << "  the cooldown is  ";
-        std :: cout << coolDown;
+        //std :: cout << "  the cooldown is  ";
+        //std :: cout << coolDown;
     }
 }
  

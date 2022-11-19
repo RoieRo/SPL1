@@ -4,25 +4,30 @@
 #include "../include/SelectionPolicy.h"//Shira added
 void MandatesJoinPolicy::join(Simulation &s, int partyId)
 {
+    std::cout <<"Just Entered Join of MandatesJoinPolicy with partyid"<< partyId << std::endl;
     int maxSum = 0;
-    int agentId = -1;
+    int coalNum = -1;
 
+    //Iterating over the coalitions that offerd this party to join their coalition.
     for (unsigned int i = 0; i < s.getParty3(partyId).getOffers().size(); i++)
     {
         int currSum = 0;
-        for (unsigned int j = 0; j < s.getCoalitionVec()[i].size(); j++)
+        int offeredCoal = s.getParty3(partyId).getOffers()[i];
+        for (unsigned int j = 0; j < s.getCoalitionVec()[offeredCoal].size(); j++)
         {
-            currSum = currSum + s.getParty(s.getCoalitionVec()[i][j]).getMandates();
+            //Suming offeredCoal mandates
+            currSum = currSum + s.getParty(s.getCoalitionVec()[offeredCoal][j]).getMandates();
         }
         if (currSum > maxSum)
         {
             maxSum = currSum;
-            agentId = i;
+            coalNum = offeredCoal;
         }
     }
-    s.getCoalitionVec()[agentId].push_back(partyId);
+    std::cout << partyId << " Just chose to Join coalition number "<< coalNum << std::endl;
+    s.getCoalitionVec()[coalNum].push_back(partyId);
     //Creating a new Agent clone
-    Agent dupAgent = s.getAgents2()[agentId];
+    Agent dupAgent = s.getAgents()[coalNum];
     dupAgent.setPartyId(partyId);
     dupAgent.setAgentId(s.getAgents().size());
     s.getAgents2().push_back(dupAgent);

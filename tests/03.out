@@ -476,15 +476,17 @@
         ],
         "coalitions": [
             {
-                "mandates": 30,
+                "mandates": 60,
                 "parties": [
-                    0
+                    0,
+                    1
                 ]
             },
             {
-                "mandates": 30,
+                "mandates": 60,
                 "parties": [
-                    3
+                    3,
+                    2
                 ]
             }
         ],

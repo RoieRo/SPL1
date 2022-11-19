@@ -1,7 +1,7 @@
 #include "Agent.h"
 #include "Simulation.h"
-#include "iostream"
-Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) : mAgentId(agentId), mPartyId(partyId), mSelectionPolicy(selectionPolicy), mCoalition(0)
+#include <iostream>
+Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) : mAgentId(agentId), mPartyId(partyId), mSelectionPolicy(selectionPolicy), mCoalition(-1)
 {
     // You can change the implementation of the constructor, but not the signature!
 }
@@ -12,6 +12,7 @@ Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) : mAgen
 Agent::Agent(const Agent &other) : mAgentId(other.mAgentId), mPartyId(other.mPartyId),
                                    mSelectionPolicy(other.mSelectionPolicy->cloneAgent()),mCoalition(other.mCoalition)
 {
+    std::cout <<"Agent Copy Constructor"<< std::endl;
 }   
 
 Agent::~Agent() // Destructor
@@ -61,12 +62,12 @@ Agent& Agent::operator=(Agent&& other)
     }
     return *this;
 }
-/// get coalition I made today
+
 int Agent::getCoalition() const
 {
     return mCoalition;
 }
-/// I made today
+
 void Agent::setCoalition(int coalition)
 {
     mCoalition = coalition;
@@ -93,37 +94,59 @@ void Agent::setAgentId(int newAgentID)
 
 void Agent::step(Simulation &sim)
 {
-
+    std::cout <<"Just Entered Agent step with agentid"<< mAgentId << std::endl;
     vector<int> potentialParties;
-    
-    bool isOk = true;
-
-    for (int i = 0; i < (sim.getGraph().getNumVertices() - 1); i++) // iterating over all the parties
+    for (int currParty = 0; currParty < sim.getGraph().getNumVertices(); currParty++)
     {
-        // std ::cout << " loop step 1 ";
-        // checks if a party is a neighboor and its state
-        
-        if (mPartyId != i && isOk && sim.getGraph().getEdgeWeight(mPartyId, i)>0 && sim.getGraph().getParty(i).getState() != Joined)
+        if(sim.getParty(currParty).getState() != Joined)
         {
-           // std ::cout << " loop step 2 ";
-            // checks if our coalition allready offered party i to join.
-            
-            
-            for (unsigned int j = 0; j < sim.getParty3(i).getOffers().size(); j++)
+            if(sim.getGraph().getEdgeWeight(currParty, mPartyId)> 0)
             {
-                if (mCoalition == sim.getParty3(i).getOffers()[j])
-                    isOk = false;
-            }
-            
-            // isOk=true;
-            // Checks if we already got offers from a coalition
-            // then insert i into potentialpARTIES.
-            if (isOk)
-            {
-                potentialParties.push_back(i);
+                bool flag = true;
+                for(unsigned int j=0; j< sim.getParty3(currParty).getOffers().size(); j++)
+                {
+                    if(mCoalition == sim.getParty3(currParty).getOffers()[j])
+                    {
+                        flag = false;
+                    }
+                }
+                if(flag){
+                    potentialParties.push_back(currParty);
+                }
             }
         }
     }
-    //mCoalition = this->getCoalition(); SHIRA DELETED- UNNECESSERY
-    this->mSelectionPolicy->select(sim, potentialParties, mPartyId, mAgentId, mCoalition);
+    mSelectionPolicy->select(sim, potentialParties, mPartyId, mAgentId, mCoalition);
 }
+//     std::cout <<"Just Entered Agent step with agentid"<< mAgentId << std::endl;
+//     vector<int> potentialParties;
+    
+//     bool isOk = true;
+
+//     for (int i = 0; i < sim.getGraph().getNumVertices(); i++) // Iterating over all the parties
+//     {
+        
+//         // Checks if a party is a neighboor and its state
+        
+//         if (mPartyId != i && isOk && (sim.getGraph().getEdgeWeight(mPartyId, i)>0) && sim.getGraph().getParty(i).getState() != State::Joined)
+//         {
+           
+//             for (unsigned int j = 0; j < sim.getParty3(i).getOffers().size(); j++)
+//             {
+//                 if (mCoalition == sim.getParty3(i).getOffers()[j])
+//                     isOk = false;
+//             }
+            
+//             if (isOk)
+//             {
+//                 potentialParties.push_back(i);
+//             }
+//             else
+//             {
+//                 isOk = true;
+//             }
+//         }
+//     }
+    
+//     mSelectionPolicy->select(sim, potentialParties, mPartyId, mAgentId, mCoalition);
+// }

@@ -5,24 +5,23 @@ using namespace std ;
  Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents), coalitionVec()
  {
      //vector<vector<int>> coalitionVec;
-     coalitionVec.resize(agents.size());
-     for (unsigned int k = 0; k < agents.size(); k++)
+     coalitionVec.resize(mAgents.size());
+     for (unsigned int k = 0; k < mAgents.size(); k++)
      {
-         vector<int> v;
-         v.push_back(agents[k].getPartyId());
-         agents[k].setCoalition(k);
-         coalitionVec[agents[k].getCoalition()] = v;
-       
+         coalitionVec[k].push_back(mAgents[k].getPartyId());
+         mAgents[k].setCoalition(k);
+         
      }
+     
  }
 
 void Simulation::step()
 {
-    
+    std::cout <<"Just Entered Simulation step"<< std::endl;
+
     for (int i = 0; i < mGraph.getNumVertices(); i++)
     {
-
-
+        std::cout <<"Entering Party step for Party "<< i << std::endl;
         mGraph.getParty2(i).step(*this);
 
     }
@@ -35,7 +34,7 @@ void Simulation::step()
 
 bool Simulation::shouldTerminate() const
 {
-    const vector<vector<int>> coalitionParties = this->getPartiesByCoalitions();
+    const vector<vector<int>> coalitionParties = getPartiesByCoalitions();
     
     for (unsigned int i = 0; i < coalitionParties.size(); i++)
     {
@@ -43,21 +42,23 @@ bool Simulation::shouldTerminate() const
         
         for (unsigned int j = 0; j < coalitionParties[i].size(); j++)
         {
-            sumMandates += mGraph.getMandates(coalitionParties[i][j]);
+            sumMandates = sumMandates + mGraph.getMandates(coalitionParties[i][j]);
         }
         if (sumMandates >= 61)
         {
+            std::cout <<"Terminated because we have coalition with 61"<< std::endl;
             return true;
         }
     }
 
     for (int i = 0; i < mGraph.getNumVertices() ; i++)
     {
-        if (mGraph.getParty(i).getState() != Joined)
+        if (mGraph.getParty(i).getState() != State::Joined)
         {
             return false;
         }
     }
+    std::cout <<"Terminated because all the parties Joined a coalition"<< std::endl;
     return true;
 }
 
@@ -83,9 +84,6 @@ const Party &Simulation::getParty(int partyId) const
     return mGraph.getParty2(partyId);
 }
 
-//
-
-//
 /// This method returns a "coalition" vector, where each element is a vector of party IDs in the coalition.
 /// At the simulation initialization - the result will be [[agent0.partyId], [agent1.partyId], ...]
 const vector<vector<int>> Simulation::getPartiesByCoalitions() const
@@ -94,6 +92,6 @@ const vector<vector<int>> Simulation::getPartiesByCoalitions() const
     return coalitionVec;  
 }
 
-vector<vector<int>> Simulation::getCoalitionVec(){
+vector<vector<int>> & Simulation::getCoalitionVec(){
     return coalitionVec;
 }

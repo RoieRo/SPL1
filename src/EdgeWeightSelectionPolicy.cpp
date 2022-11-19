@@ -4,12 +4,15 @@
 
 void EdgeWeightSelectionPolicy::select(Simulation &s, std::vector<int> potential, int partyID, int agentId,int mCoalition)
 {
+    std::cout <<"Just Entered Select of EdgeWeightSelectionPolicy with agentid:  "<< agentId << std::endl;
+    std::cout <<"This Agent is from Coalition number: "<< mCoalition << std::endl;
     int maxParty = -1;
     int maxEdge = 0;
     int edge;
     
     for (unsigned int i = 0; i < potential.size(); i++)
     {
+        std::cout <<"agent checked party number"<< potential[i] << std::endl;
         edge = s.getGraph().getEdgeWeight(potential[i], partyID);
         if (edge > maxEdge)
         {
@@ -20,9 +23,9 @@ void EdgeWeightSelectionPolicy::select(Simulation &s, std::vector<int> potential
 
     if (maxParty > -1)
     {
+        std::cout <<"agent chose  party number"<< maxParty << std::endl;
         s.getParty3(maxParty).getOffers().push_back(mCoalition);
-         //this is not a part from the test
-         s.getParty3(maxParty).setState(CollectingOffers);
+        s.getParty3(maxParty).setState(State::CollectingOffers);
     }
 }
 

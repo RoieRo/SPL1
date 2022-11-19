@@ -4,20 +4,17 @@
 #include <iostream>
 void LastOfferJoinPolicy::join(Simulation &s, int partyId)
 {
+    std::cout <<"Just Entered Join of LastOfferJoinPolicy with partyid"<< partyId << std::endl;
     int sizeOfVec= s.getParty3(partyId).getOffers().size()-1;
-    int agentId = s.getParty3(partyId).getOffers()[sizeOfVec];
-    // I add
-    int CoalId = s.getParty3(partyId).getOffers()[sizeOfVec];
-    // here i change to  coalId and not agentId
-    s.getCoalitionVec()[CoalId].push_back(partyId);
-    ///
-    std :: cout << " now party number " ;
-    std :: cout << partyId;
-    std :: cout << " joined to coalition number " ;   
-    std :: cout << s.getCoalitionVec()[CoalId][0];
-    std :: cout << "    " ; 
-    //Creating a new Agent clone
-    Agent dupAgent = s.getAgents2()[agentId];
+    
+    int coalId = s.getParty3(partyId).getOffers()[sizeOfVec];
+    
+    s.getCoalitionVec()[coalId].push_back(partyId);
+    std::cout << partyId << " Just chose to Join coalition number "<< coalId << std::endl;
+    //Creating a new Agent clone 
+    //Note: Agents in the same coalition are clones of the same agent - agents[coalId]
+    
+    Agent dupAgent = s.getAgents()[coalId];
     dupAgent.setPartyId(partyId);
     dupAgent.setAgentId(s.getAgents().size());
     s.getAgents2().push_back(dupAgent); 
