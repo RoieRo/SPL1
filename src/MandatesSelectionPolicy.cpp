@@ -17,13 +17,13 @@ void MandatesSelectionPolicy ::select(Simulation &s, std::vector<int> potential,
         }
     }
     if(maxParty >-1){
-        s.getParty(maxParty).getOffers().push_back(mCoalition);
+        s.getParty3(maxParty).getOffers().push_back(mCoalition);
         // from here test
         std :: cout << " here its ok " ;
         std :: cout << " num of party that chosed " ;
         std :: cout <<  s.getParty(maxParty).getMandates() ;
         std :: cout << "    " ;
-        vector<int> vecOffers = s.getParty(maxParty).getOffers();
+        vector<int> vecOffers = s.getParty3(maxParty).getOffers();
         for (auto element : vecOffers)
          {
             
