@@ -1,5 +1,4 @@
 #include "Party.h"
-
 #include <iostream>
 
 // Constructor
@@ -9,7 +8,6 @@ Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName
     
 }
 
-// offers(std::vector <int> (other.offers))
 //  Copy Constructor
 Party::Party(const Party &other) : mId(other.mId), mName(other.mName), 
 mMandates(other.mMandates),mJoinPolicy(other.mJoinPolicy->cloneParty()), mState(other.mState), coolDown(other.coolDown),
@@ -99,27 +97,23 @@ const string &Party::getName() const
 {
     return mName;
 }
- //const JoinPolicy Party::getJoin() const
-//{
-  //  return *mJoinPolicy;
-//}
 
 void Party::step(Simulation &s)
 {
-    std::cout <<"Just Entered Party step with partyid"<< mId << std::endl;
+    std::cout << "Just Entered Party step with partyid" << mId << std::endl;
+    
     if (mState == State::CollectingOffers)
     {
         coolDown = coolDown + 1;
-        std::cout <<"Party "<< mId <<"is in collectin offers and its cooldown is "<< coolDown << std::endl;
         
+        std::cout << "Party " << mId << "is in collectin offers and its cooldown is " << coolDown << std::endl;
+
         if (coolDown == 3)
         {
             mJoinPolicy->join(s, mId);
 
             mState = State::Joined;
         }
-        //std :: cout << "  the cooldown is  ";
-        //std :: cout << coolDown;
     }
 }
  

@@ -8,6 +8,7 @@ void MandatesSelectionPolicy::select(Simulation &s, std::vector<int> potential, 
     int maxMandats = -1;
     int maxParty = -1;
     int current = -1;
+    //Iterating over all the potential parties and checks which one has the most mandates.
     for (unsigned int i = 0; i < potential.size(); i++)
     {
         current = s.getParty(potential[i]).getMandates();
@@ -17,22 +18,11 @@ void MandatesSelectionPolicy::select(Simulation &s, std::vector<int> potential, 
             maxParty = potential[i];
         }
     }
-    if(maxParty > -1){
+    if(maxParty > -1)
+    {
+        //Adding the chosen party's ID to coalitionparties vector
         s.getParty3(maxParty).getOffers().push_back(mCoalition);
-        // // from here test
-        // std :: cout << " here its ok " ;
-        // std :: cout << " num of party that chosed " ;
-        // std :: cout <<  s.getParty(maxParty).getMandates() ;
-        // std :: cout << "    " ;
-        // vector<int> vecOffers = s.getParty3(maxParty).getOffers();
-        // for (auto element : vecOffers)
-        //  {
-            
-        //     std :: cout << " LOOpppppp " ;
-        //     std :: cout << element ;
-        //  }
-        // // finish test
-        // // update the state of party
+        //Setting the chosen party's state.
         s.getParty3(maxParty).setState(State::CollectingOffers) ;
         std::cout <<"chose the party"<< maxParty << std::endl;
     }

@@ -2,7 +2,7 @@
 
 Graph::Graph(vector<Party> vertices, vector<vector<int>> edges) : mVertices(vertices), mEdges(edges) 
 {
-    // You can change the implementation of the constructor, but not the signature!
+   
 }
 
 int Graph::getMandates(int partyId) const
