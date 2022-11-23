@@ -4,6 +4,11 @@
 
 using std::cout;
 using std::endl;
+/*
+    SPL Assigment 1 
+    Date: 24.11.2022
+    Shira Ifergane, ID: 211701560 & Roie Rozenstein, ID:318438405
+*/
 
 int main(int argc, char **argv)
 {
@@ -19,12 +24,9 @@ int main(int argc, char **argv)
 
     // run simulation and store json state after each iteration
     vector<json> outPerIter = {Parser::makeJson(simulation)};
-    int k=0;
+    
     while (!simulation.shouldTerminate() )
     {
-        k++;
-        std :: cout << "         -------        "<< std::endl;
-        std :: cout << "started step"<< k << std::endl;
         simulation.step();
         outPerIter.push_back(Parser::makeJson(simulation));
     }

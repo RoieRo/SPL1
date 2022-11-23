@@ -6,15 +6,12 @@
 void LastOfferJoinPolicy::join(Simulation &s, int partyId)
 {
     
-    std::cout << "Just Entered Join of LastOfferJoinPolicy with partyid" << partyId << std::endl;
-    
     int sizeOfVec = s.getParty3(partyId).getOffers().size() - 1;
 
     int coalId = s.getParty3(partyId).getOffers()[sizeOfVec];
     //Adding the party to the coalition that offered last (the coalition located last in the offer vector)
     s.getCoalitionVec()[coalId].push_back(partyId);
     
-    std::cout << partyId << " Just chose to Join coalition number " << coalId << std::endl;
     
     // Creating a new Agent clone
     // Note: Agents in the same coalition are clones of the same agent - agents[coalId]

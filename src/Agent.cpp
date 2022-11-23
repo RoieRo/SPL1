@@ -15,7 +15,7 @@ Agent::Agent(const Agent &other) : mAgentId(other.mAgentId), mPartyId(other.mPar
                                    mSelectionPolicy(other.mSelectionPolicy->cloneAgent()),
                                    mCoalition(other.mCoalition)
 {
-    std::cout <<"Agent Copy Constructor"<< std::endl;
+    
 }
 
 // Destructor
@@ -100,7 +100,6 @@ void Agent::setAgentId(int newAgentID)
 
 void Agent::step(Simulation &sim)
 {
-    std::cout <<"Just Entered Agent step with agentid"<< mAgentId << std::endl;
     vector<int> potentialParties; //Party ID's that follow the 3 conditions will be inserted to potentialParties vector.
     
     //Iterating over all the parties in the Graph.

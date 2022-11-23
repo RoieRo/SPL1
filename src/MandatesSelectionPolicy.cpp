@@ -4,7 +4,6 @@
 
 void MandatesSelectionPolicy::select(Simulation &s, std::vector<int> potential, int partyID, int agentId,int mCoalition)
 {
-    std::cout <<"Just Entered Select of MandatesSelectionPolicy with agentid"<< agentId << std::endl;
     int maxMandats = -1;
     int maxParty = -1;
     int current = -1;
@@ -24,7 +23,6 @@ void MandatesSelectionPolicy::select(Simulation &s, std::vector<int> potential, 
         s.getParty3(maxParty).getOffers().push_back(mCoalition);
         //Setting the chosen party's state.
         s.getParty3(maxParty).setState(State::CollectingOffers) ;
-        std::cout <<"chose the party"<< maxParty << std::endl;
     }
 }
 

@@ -15,12 +15,9 @@ Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgen
 
 void Simulation::step()
 {
-    std::cout << "Just Entered Simulation step" << std::endl;
     //Iterating over all the parties.
     for (int i = 0; i < mGraph.getNumVertices(); i++)
     {
-        std::cout << "Entering Party step for Party " << i << std::endl;
-        
         mGraph.getParty2(i).step(*this);
     }
     //Iterating over all the agents.
@@ -38,16 +35,12 @@ bool Simulation::shouldTerminate() const
     {
         int sumMandates = 0;
 
-        std::cout << "Suming coalition number " << i << std::endl;
-
         for (unsigned int j = 0; j < coalitionParties[i].size(); j++)
         {
-            std::cout << "party number " << coalitionParties[i][j] << std::endl;
             sumMandates = sumMandates + mGraph.getMandates(coalitionParties[i][j]);
         }
         if (sumMandates >= 61)
         {
-            std::cout << "Terminated because we have coalition with " << sumMandates << " mandates" << std::endl;
             return true;
         }
     }
@@ -59,7 +52,6 @@ bool Simulation::shouldTerminate() const
             return false;
         }
     }
-    std::cout <<"Terminated because all the parties Joined a coalition"<< std::endl;
     
     return true;
 }

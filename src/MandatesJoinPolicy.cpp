@@ -5,7 +5,6 @@
 
 void MandatesJoinPolicy::join(Simulation &s, int partyId)
 {
-    std::cout <<"Just Entered Join of MandatesJoinPolicy with partyid"<< partyId << std::endl;
     int maxSum = 0;
     int coalNum = -1;
 
@@ -25,7 +24,7 @@ void MandatesJoinPolicy::join(Simulation &s, int partyId)
             coalNum = offeredCoal;
         }
     }
-    std::cout << partyId << " Just chose to Join coalition number "<< coalNum << std::endl;
+    
     //Adding party to coalitionparties vector.
     s.getCoalitionVec()[coalNum].push_back(partyId);
     

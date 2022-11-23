@@ -100,14 +100,11 @@ const string &Party::getName() const
 
 void Party::step(Simulation &s)
 {
-    std::cout << "Just Entered Party step with partyid" << mId << std::endl;
     
     if (mState == State::CollectingOffers)
     {
         coolDown = coolDown + 1;
         
-        std::cout << "Party " << mId << "is in collectin offers and its cooldown is " << coolDown << std::endl;
-
         if (coolDown == 3)
         {
             mJoinPolicy->join(s, mId);
